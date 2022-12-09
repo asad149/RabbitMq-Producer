@@ -17,10 +17,10 @@ public class MessagePublisher {
 	
 	@PostMapping("/publish")
 	public String publishMessage(@RequestBody CustomMessage message) {
+		
 		message.setMessageId(UUID.randomUUID().toString());
 		message.setMessageDate(new Date());
-		template.convertAndSend(MQConfig.EXCHANGE, MQConfig.ROUTING_KEY, message);
-	
+		template.convertAndSend( MQConfig.QUEUE, "ASAD".getBytes());
 		return "Message Published";
 		
 	}

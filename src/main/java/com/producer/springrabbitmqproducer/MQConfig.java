@@ -24,35 +24,35 @@ public class MQConfig {
 	
 	@Bean
 	public Queue queue() {
-		return new Queue(QUEUE);
+		return new Queue(QUEUE, true);
 	}
-	@Bean
-	public TopicExchange exchange() {
-		return new TopicExchange(EXCHANGE);
-	}
-	
-	@Bean
-	public Binding binding(Queue queue,TopicExchange exchange) {
-		
-		return BindingBuilder
-				.bind(queue)
-				.to(exchange)
-				.with(ROUTING_KEY);
-	}
-	
-	
-	@Bean
-	public MessageConverter messageConverter() {
-		return new Jackson2JsonMessageConverter();
-	}
-	
-	
-	@Bean
-	public AmqpTemplate template(ConnectionFactory connectionFactory) {
-		RabbitTemplate template = new RabbitTemplate(connectionFactory);
-		template.setMessageConverter(messageConverter());
-		return template;
-	}
+//	@Bean
+//	public TopicExchange exchange() {
+//		return new TopicExchange(EXCHANGE);
+//	}
+//	
+//	@Bean
+//	public Binding binding(Queue queue,TopicExchange exchange) {
+//		
+//		return BindingBuilder
+//				.bind(queue)
+//				.to(exchange)
+//				.with(ROUTING_KEY);
+//	}
+//	
+//	
+//	@Bean
+//	public MessageConverter messageConverter() {
+//		return new Jackson2JsonMessageConverter();
+//	}
+//	
+//	
+//	@Bean
+//	public AmqpTemplate template(ConnectionFactory connectionFactory) {
+//		RabbitTemplate template = new RabbitTemplate(connectionFactory);
+//		template.setMessageConverter(messageConverter());
+//		return template;
+//	}
 	
 	
 }
